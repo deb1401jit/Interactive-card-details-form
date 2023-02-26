@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <title>Frontend Mentor | Interactive card details form</title>
+
+</head>
+
+<body>
+
+  <main>
+    <picture>
+      <source srcset="images/bg-main-desktop.png" media="(min-width: 429px)">
+      <img src="images/bg-main-mobile.png" alt=" gradient background image" class="bg-image">
+    </picture>
+
+    <article class="card-container">
+      <div class="card-front">
+        <img src="images/bg-card-front.png" alt="front of the card">
+        <img src="images/card-logo.svg" alt="card logo">
+        <div class="card-front-display-elements">
+          <p>0000 0000 0000 0000</p>
+          <div class="card-front-display-elements-flex">
+            <p>jane appleseed</p>
+            <p><span>00</span>/<span>00</span></p>  
+          </div>
+        </div>
+      </div>
+
+      <div class="card-back">
+        <img src="images/bg-card-back.png" alt="back of the card">
+        <p>000</p>
+      </div>
+    </article>
+
+    <article class="cardholder-details">
+      <div>
+        <label for="cardholder-name-inp">cardholder name</label>
+        <input type="text" id="cardholder-name-inp" maxlength="30" placeholder="e.g. Jane Appleseed">
+        <p class="error"></p>
+      </div>
+
+      <div>
+        <label for="card-number-inp">card number</label>
+        <input type="text" id="card-number-inp" 
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="19" placeholder="e.g. 1234 5678 9123 0000">
+        <p class="error"></p>
+      </div>
+
+      <div class="flex-inp-container">
+        <div>
+          <label for="exp-month-inp">exp. date (mm/yy)</label>
+          <div class="flex-inp-container-2">
+            <input type="text" id="exp-month-inp" 
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="2" placeholder="MM">
+            <input type="text" id="exp-year-inp" 
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="2" placeholder="YY">
+          </div>
+          <p class="error"></p>
+        </div>
+
+        <div>
+          <label for="cvc-inp">cvc</label>
+          <input type="text" id="cvc-inp" 
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="3" placeholder="e.g. 123">
+          <p class="error"></p>
+        </div>
+      </div>
+      <button type="submit" id="confirm">Confirm</button>
+    </article>
+    
+    <article class="submitted-container hidden">
+      <img src="images/icon-complete.svg" alt="">
+      <h2>THANK YOU!</h2>
+      <p>We've added your card details</p>
+      <button>Continue</button>
+    </article>
+
+  </main>
+</body>
+
+</html>

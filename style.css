@@ -1,0 +1,465 @@
+* {
+  /* Remove default margin on everything */
+  margin: 0;
+  /* Remove default padding on everything */
+  padding: 0;
+  /* Calc `em` based line height, bigger line height for smaller font size and smaller line height for bigger font size: https://kittygiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/ */
+  line-height: calc(0.25rem + 1em + 0.25rem);
+}
+
+/* Use a more-intuitive box-sizing model on everything */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/* Remove border and set sensible defaults for backgrounds, on all elements except fieldset progress and meter */
+*:where(:not(fieldset, progress, meter)) {
+  border-width: 0;
+  border-style: solid;
+  background-origin: border-box;
+  background-repeat: no-repeat;
+}
+
+html {
+  /* Allow percentage-based heights in the application */
+  block-size: 100%;
+  /* Making sure text size is only controlled by font-size */
+  -webkit-text-size-adjust: none;
+}
+
+/* Smooth scrolling for users that don't prefer reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Allow percentage-based heights in the application */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  /* https://marco.org/2012/11/15/text-rendering-optimize-legibility */
+  text-rendering: optimizeSpeed;
+}
+
+/* Improve media defaults */
+:where(img, svg, video, canvas, audio, iframe, embed, object) {
+  display: block;
+}
+:where(img, svg, video) {
+  block-size: auto;
+  max-inline-size: 100%;
+}
+
+/* Remove stroke and set fill colour to the inherited font colour */
+:where(svg) {
+  stroke: none;
+  fill: currentColor;
+}
+
+/* SVG's without a fill attribute */
+:where(svg):where(:not([fill])) {
+  /* Remove fill and set stroke colour to the inherited font colour */
+  stroke: currentColor;
+  fill: none;
+  /* Rounded stroke */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Set a size for SVG's without a width attribute */
+:where(svg):where(:not([width])) {
+  inline-size: 5rem;
+}
+
+/* Remove built-in form typography styles */
+:where(input, button, textarea, select),
+:where(input[type="file"])::-webkit-file-upload-button {
+  color: inherit;
+  font: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+}
+
+/* Change textarea resize to vertical only and block only if the browser supports that */
+:where(textarea) {
+  resize: vertical;
+}
+@supports (resize: block) {
+  :where(textarea) {
+    resize: block;
+  }
+}
+
+/* Avoid text overflows */
+:where(p, h1, h2, h3, h4, h5, h6) {
+  overflow-wrap: break-word;
+}
+
+/* Fix h1 font size inside article, aside, nav, and section */
+h1 {
+  font-size: 2em;
+}
+
+/* Position list marker inside */
+:where(ul, ol) {
+  list-style-position: inside;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+:where(ul, ol)[role="list"] {
+  list-style: none;
+}
+
+/* More readable underline style for anchor tags without a class. This could be set on anchor tags globally, but it can cause conflicts. */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make it clear that interactive elements are interactive */
+:where(
+    a[href],
+    area,
+    button,
+    input,
+    label[for],
+    select,
+    summary,
+    textarea,
+    [tabindex]:not([tabindex*="-"])
+  ) {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+:where(input[type="file"]) {
+  cursor: auto;
+}
+:where(input[type="file"])::-webkit-file-upload-button,
+:where(input[type="file"])::file-selector-button {
+  cursor: pointer;
+}
+
+/* Make sure users can't select button text */
+:where(
+    button,
+    button[type],
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"]
+  ),
+:where(input[type="file"])::-webkit-file-upload-button,
+:where(input[type="file"])::file-selector-button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  text-align: center;
+}
+
+/* Disabled cursor for disabled buttons */
+:where(
+    button,
+    button[type],
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"]
+  )[disabled] {
+  cursor: not-allowed;
+}
+
+/* ==== My CSS ==== */
+
+html {
+  font-size: 18px;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* --Card Layout-- */
+
+.bg-image {
+  width: 100%;
+}
+
+.card-container {
+  margin: 3rem 4.75%;
+  position: absolute;
+  top: 0;
+  text-transform: uppercase;
+  height: 0;
+}
+
+.card-front {
+  width: 83.5%;
+  transform: translateY(37%);
+  position: relative;
+  z-index: 1;
+}
+
+.card-container p {
+  font-size: 0.6rem;
+}
+
+.card-front > img:nth-child(2) {
+  transform: translate(35%, -435%);
+  width: 20%;
+}
+
+.card-front-display-elements {
+  position: absolute;
+  bottom: 27%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  color: hsl(270, 3%, 87%);
+  letter-spacing: 0.125em;
+}
+
+.card-front-display-elements > p {
+  font-size: 1rem;
+  margin-bottom: 0.5em;
+}
+
+.card-front-display-elements-flex {
+  display: flex;
+  justify-content: space-between;
+  width: min(85%, 13.5em);
+  margin: 0 auto;
+  letter-spacing: 0.05em;
+}
+
+.card-back {
+  width: 83.5%;
+  float: right;
+  transform: translateY(-132%);
+  position: relative;
+}
+
+.card-back > p {
+  position: absolute;
+  text-align: right;
+  bottom: 45%;
+  right: 11%;
+  color: white;
+  letter-spacing: 0.05em;
+}
+
+
+/* --Details Layout-- */
+
+.cardholder-details {
+  margin: 20% 1.275em 0 1.275em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1em;
+}
+
+.cardholder-details label {
+  text-transform: uppercase;
+  color: hsl(278, 68%, 11%);
+  font-size: 0.725rem;
+  letter-spacing: 0.125em;
+}
+
+.cardholder-details input {
+  border: 2px solid hsl(270, 3%, 87%);
+  padding: 0.475em 0.875em;
+  width: 100%;
+  border-radius: 7px;
+  outline: none;
+  transition: 0.35s;
+  color: hsl(278, 68%, 11%);
+}
+
+.cardholder-details input:focus-visible {
+  border-color: hsl(278, 94%, 30%);
+}
+
+    /* placeholder color */
+
+    ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: hsl(270, 3%, 75%);
+    opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: hsl(270, 3%, 75%);
+    }
+
+    ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: hsl(270, 3%, 75%);
+    }
+
+.flex-inp-container {
+  display: flex;
+  gap: 0.55em;
+}
+
+.flex-inp-container-2 {
+  display: flex;
+  gap: 0.3em;
+}
+
+.flex-inp-container > div:last-child {
+  width: 150%;
+}
+
+button {
+  padding: 0.8em 0;
+  color: hsl(270, 3%, 87%);
+  background-color: hsl(278, 68%, 11%);
+  border-radius: 10px;
+  transition: 0.3s;
+  margin-top: 0.375em;
+}
+
+button:hover,
+button:focus-visible{
+    background-color: hsl(278, 94%, 30%);
+}
+
+.submitted-container{
+  height: 50vh;
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 17% 1em 0 1em;
+}
+
+.submitted-container > img {
+  width: 24%;
+}
+
+.submitted-container > h2 {
+  color: hsl(278, 68%, 11%);
+  letter-spacing: 0.15em;
+  font-weight: normal;
+}
+
+.submitted-container > p {
+  color: hsl(279, 6%, 55%);
+  transform: translateY(-5vh);
+}
+
+.submitted-container > button {
+  width: 98%;
+}
+
+.hidden {
+  display: none;
+}
+
+.error {
+  position: absolute;
+  font-size: .675rem;
+  color: hsl(0, 100%, 66%);
+}
+
+
+@media (min-width: 420px) {
+  main {
+    display: flex;
+    height: 100vh;
+  }
+
+  .bg-image {
+    height: 100%;
+    width: 30vw;
+    object-fit: cover;
+  }
+
+  .cardholder-details { 
+    margin: auto;
+    gap: 1.5em;
+    width: 27%;
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.785em;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transform: translateX(13vw);
+    color: hsl(0, 0%, 100%);    
+  }
+  
+  .card-front {
+    transform: translateY(0);
+    border-radius: 10px;
+    box-shadow: 10px 0px 50px 20px rgba(0,0,0,0.1);
+  }
+
+  .card-container p {
+    font-size: 0.725rem;
+  }
+  
+  .card-front > img:nth-child(2) {
+    position: absolute;
+  }
+  
+  .card-front-display-elements {
+    position: absolute;
+    bottom: 10%;
+    letter-spacing: 0.17em;
+  }
+  
+  .card-front-display-elements > p {
+    font-size: 1.3rem;
+    margin-bottom: 0.685em;
+  }
+  
+  .card-front-display-elements-flex {
+    display: flex;
+    width: 85%;
+    letter-spacing: 0.0725em;
+  }
+  
+  .card-back {
+    transform: translateY(0);
+    align-self: flex-end;
+    border-radius: 10px;
+    box-shadow: 10px 0px 50px 20px rgba(0,0,0,0.1);
+  }
+  
+  .card-back > p {
+    letter-spacing: 0.0675em;
+  }
+
+  .submitted-container{
+    margin: auto;
+    height: auto;
+    width: 27%;
+    gap: 1.375em;
+    justify-content: space-between;
+  }
+  
+  .submitted-container > img {
+    width: 17%;
+  }
+  
+  .submitted-container > p {
+    transform: translateY(-2vh);
+  }
+  
+  .submitted-container > button {
+    width: 98%;
+  }
+}
